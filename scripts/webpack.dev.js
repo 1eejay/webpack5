@@ -12,6 +12,16 @@ module.exports = (config = {}) =>
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
+        {
+          test: /\.(j|t)s$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: path.join(__dirname, '../.cache/babel'),
+            },
+          },
+        },
       ],
     },
     plugins: [

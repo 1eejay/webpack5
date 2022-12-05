@@ -2,7 +2,7 @@ const path = require('node:path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = (config = {}) => ({
-  entry: path.resolve(__dirname, '../src/index.js'),
+  entry: path.resolve(__dirname, '../src/index.ts'),
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
@@ -34,7 +34,7 @@ module.exports = (config = {}) => ({
     ],
   },
   resolve: {
-    extensions: ['.json', '.js', '.jsx'],
+    extensions: ['.json', '.js', '.ts'],
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
   },
   plugins: [
@@ -44,4 +44,9 @@ module.exports = (config = {}) => ({
       inject: 'body',
     }),
   ],
+  cache: {
+    type: 'filesystem',
+    allowCollectingMemory: true,
+    cacheDirectory: path.resolve(__dirname, '../.cache'),
+  },
 })

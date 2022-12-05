@@ -4,6 +4,7 @@ const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const createCommonConfig = require('./webpack.common')
 
@@ -19,10 +20,21 @@ module.exports = (config = {}) =>
           test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
+        {
+          test: /\.(j|t)s$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: path.join(__dirname, '../.cache/babel'),
+            },
+          },
+        },
       ],
     },
     optimization: {
-      minimizer: [new CssMinimizerPlugin()],
+      minimize: true,
+      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
     },
     plugins: [
       new webpack.DefinePlugin({

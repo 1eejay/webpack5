@@ -1,13 +1,27 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
     node: true,
     es2022: true,
   },
+  parser: '@babel/eslint-parser',
   parserOptions: {
+    babelOptions: {
+      configFile: './babel.config.js',
+    },
     sourceType: 'module',
   },
   extends: ['standard', 'prettier', 'plugin:prettier/recommended'],
-  rules: {},
+  plugins: ['html'],
+  overrides: [
+    {
+      files: ['*.ts'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+      extends: ['plugin:@typescript-eslint/recommended'],
+      plugins: ['@typescript-eslint'],
+    },
+  ],
 }

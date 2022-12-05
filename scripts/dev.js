@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-const createDevConfig = require('./webpack.dev')
+const createDevConfig = require('./webpack.dev.js')
 const config = require('./config')
 
 const dev = async (config) => {
