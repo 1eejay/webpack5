@@ -11,13 +11,27 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  extends: ['standard', 'prettier', 'plugin:prettier/recommended'],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  extends: [
+    'standard',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   plugins: ['html'],
   overrides: [
     {
-      files: ['*.ts'],
+      files: ['*.ts', '*.tsx'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
         project: './tsconfig.json',
       },
       extends: ['plugin:@typescript-eslint/recommended'],

@@ -2,7 +2,7 @@ const path = require('node:path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = (config = {}) => ({
-  entry: path.resolve(__dirname, '../src/index.ts'),
+  entry: path.resolve(__dirname, '../src/index.tsx'),
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
@@ -34,7 +34,7 @@ module.exports = (config = {}) => ({
     ],
   },
   resolve: {
-    extensions: ['.json', '.js', '.ts'],
+    extensions: ['.json', '.js', '.ts', '.tsx', 'jsx'],
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
   },
   plugins: [

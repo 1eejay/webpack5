@@ -1,14 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "ES2015",
     "module": "ESNext",
     "rootDir": "./",
+    "jsx": "react",
+    "lib": ["DOM", "ESNext"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/*"]
+    },
     "moduleResolution": "node",
     "outDir": "./build",
     "removeComments": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true, //the flag fixes default and namespace imports from CommonJS to TS.
     "forceConsistentCasingInFileNames": true,
-    "strict": false,
+    "strict": true,
     "skipLibCheck": true
   },
   "include": ["src/**/*", "types"],
